@@ -26,18 +26,50 @@ internal class HelloControllerTest {
     lateinit var objectMapper: ObjectMapper
 
     @Test
-    fun `API 테스트`() {
+    fun `java_API 테스트`() {
         mockMvc.perform(
-            get(TEST_URL + "/kotlin")
-                .param("name", "test")
+            get("$TEST_URL/java")
+                .param("name", "MUSINSA")
         ).andExpect(status().is2xxSuccessful)
             .andExpect {
                 println(it.response.contentAsString)
-//                val response = objectMapper.readValue(
-//                    it.response.contentAsString,
-//                    HelloDTO.Response::class.java
-//                )
-//                assert(response.data == "Hello test")
+                val response = objectMapper.readValue(
+                    it.response.contentAsString,
+                    HelloKotlinDTO.Response::class.java
+                )
+                assert(response.data.isNotEmpty())
             }
+    }
+
+    @Test
+    fun `kotlin_API 테스트`() {
+        mockMvc.perform(
+            get("$TEST_URL/kotlin")
+                .param("name", "MUSINSA")
+        ).andExpect(status().is2xxSuccessful)
+            .andExpect {
+                println(it.response.contentAsString)
+                val response = objectMapper.readValue(
+                    it.response.contentAsString,
+                    HelloKotlinDTO.Response::class.java
+                )
+                assert(response.data.isNotEmpty())
+            }
+    }
+
+    @Test
+    fun `java_API 실패_테스트`() {
+        mockMvc.perform(
+            get("$TEST_URL/java")
+                .param("name", "MUSINSA KOTLIN")
+        ).andExpect(status().is4xxClientError)
+    }
+
+    @Test
+    fun `kotlin_API 실패_테스트`() {
+        mockMvc.perform(
+            get("$TEST_URL/kotlin")
+                .param("name", "MUSINSA KOTLIN")
+        ).andExpect(status().is4xxClientError)
     }
 }

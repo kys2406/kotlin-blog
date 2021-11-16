@@ -7,20 +7,20 @@ import javax.validation.constraints.Size
 
 class HelloKotlinDTO {
     data class Request(
-        @Parameter(
+        @field:Parameter(
             description = "이름",
             example = "MUSINSA",
             required = true
         )
-        @Size(min = 1, max = 10)
+        @field:Size(min = 1, max = 10)
         val name: String,
 
-        @Parameter(
+        @field:Parameter(
             description = "나이",
             example = "10",
         )
-        @Min(1)
-        @Max(100)
+        @field:Min(1)
+        @field:Max(100)
         val age: Int?,
     )
 
