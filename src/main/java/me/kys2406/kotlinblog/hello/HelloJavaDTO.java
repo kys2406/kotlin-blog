@@ -1,4 +1,4 @@
-package me.kys2406.kotlinblog.hello.java;
+package me.kys2406.kotlinblog.hello;
 
 import io.swagger.v3.oas.annotations.Parameter;
 

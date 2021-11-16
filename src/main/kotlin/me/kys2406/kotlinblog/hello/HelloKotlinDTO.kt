@@ -1,4 +1,4 @@
-package me.kys2406.kotlinblog.hello.kotlin
+package me.kys2406.kotlinblog.hello
 
 import io.swagger.v3.oas.annotations.Parameter
 import javax.validation.constraints.Max
